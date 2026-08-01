@@ -24,7 +24,7 @@ export function UserManagement() {
     setLoading(false);
   };
 
-  const filteredUsers = users.filter(u => 
+  const filteredUsers = users.filter((u: any) => 
     u.full_name?.toLowerCase().includes(search.toLowerCase()) || 
     u.phone.includes(search)
   );
@@ -39,7 +39,7 @@ export function UserManagement() {
             className="pl-10 h-10 bg-white"
             placeholder="Search by name or phone..."
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearch(e.target.value)}
           />
         </div>
       </div>

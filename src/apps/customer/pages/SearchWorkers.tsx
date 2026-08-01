@@ -47,7 +47,7 @@ export function SearchWorkers() {
             className="pl-10 h-11 bg-slate-50 border-none rounded-xl"
             placeholder="Search by skill (e.g. Plumber)"
             value={skill}
-            onChange={(e) => setSkill(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSkill(e.target.value)}
           />
         </div>
         <div className="flex space-x-2 overflow-x-auto pb-1 scrollbar-hide">
