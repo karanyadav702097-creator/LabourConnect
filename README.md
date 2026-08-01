@@ -75,3 +75,4 @@ npm run dev
 - **Smart Matching:** Rankings based on distance, rating, and job completion history.
 - **Dynamic Pricing:** Real-time demand-based pricing suggestions.
 - **OCR:** Automated Aadhaar text extraction for faster onboarding.
+# Build Trigger: 2026-08-01
