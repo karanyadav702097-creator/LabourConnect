@@ -1,8 +1,8 @@
-import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 import { 
   Users, UserCheck, TrendingUp, AlertTriangle, 
-  IndianRupee, Briefcase, Clock 
+  Briefcase 
 } from 'lucide-react';
 
 export function AdminHome() {

@@ -40,38 +40,4 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     )
   }
 )
-
-export const Input = React.forwardRef<HTMLInputElement, React.InputHTMLAttributes<HTMLInputElement>>(
-  ({ className, ...props }, ref) => {
-    return (
-      <input
-        ref={ref}
-        className={cn(
-          "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50",
-          className
-        )}
-        {...props}
-      />
-    )
-  }
-)
-
-export const Card = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
-  <div className={cn("rounded-lg border bg-card text-card-foreground shadow-sm", className)} {...props} />
-)
-
-export const CardHeader = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
-  <div className={cn("flex flex-col space-y-1.5 p-6", className)} {...props} />
-)
-
-export const CardTitle = ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-  <h3 className={cn("text-2xl font-semibold leading-none tracking-tight", className)} {...props} />
-)
-
-export const CardDescription = ({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
-  <p className={cn("text-sm text-muted-foreground", className)} {...props} />
-)
-
-export const CardContent = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
-  <div className={cn("p-6 pt-0", className)} {...props} />
-)
+Button.displayName = "Button"
