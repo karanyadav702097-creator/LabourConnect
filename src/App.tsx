@@ -13,6 +13,17 @@ export default function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Check for demo role in URL
+    const params = new URLSearchParams(window.location.search);
+    const demoRole = params.get('demo_role');
+    
+    if (demoRole) {
+      setRole(demoRole);
+      setSession({ user: { id: 'demo-user' } });
+      setLoading(false);
+      return;
+    }
+
     if (!isSupabaseConfigured) {
       setLoading(false);
       return;
@@ -37,6 +48,7 @@ export default function App() {
   }, []);
 
   const fetchRole = async (userId: string) => {
+    if (userId === 'demo-user') return;
     try {
       const { data } = await supabase
         .from('profiles')
@@ -61,13 +73,18 @@ export default function App() {
         <p className="text-slate-600 max-w-md">
           Please add your <code className="bg-slate-200 px-1 rounded text-primary">VITE_SUPABASE_URL</code> and 
           <code className="bg-slate-200 px-1 rounded text-primary">VITE_SUPABASE_ANON_KEY</code> 
-          to your Vercel Environment Variables to start the app.
+          to your Vercel Environment Variables.
         </p>
       </div>
     );
   }
 
-  if (loading) return <div className="h-screen flex items-center justify-center font-bold text-primary">Initialising LabourConnect...</div>;
+  if (loading) return (
+    <div className="h-screen flex flex-col items-center justify-center bg-white">
+        <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin mb-4"></div>
+        <p className="font-black text-slate-800 tracking-tight">Initialising LabourConnect...</p>
+    </div>
+  );
 
   return (
     <BrowserRouter>
@@ -81,8 +98,7 @@ export default function App() {
           role === 'admin' ? <AdminDashboard /> :
           <div className="p-10 text-center flex flex-col items-center justify-center h-screen space-y-4">
             <p className="text-lg font-bold">Waiting for account activation...</p>
-            <p className="text-sm text-slate-500 max-w-xs">Your profile role is being assigned by the admin. Please check back in a few minutes.</p>
-            <button onClick={() => supabase.auth.signOut()} className="text-primary font-bold underline">Sign Out</button>
+            <button onClick={() => { window.location.href='/auth'; supabase.auth.signOut(); }} className="text-primary font-bold underline">Sign Out</button>
           </div>
         } />
       </Routes>
